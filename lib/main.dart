@@ -15,8 +15,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Amazing_ui',
-      home: ChooseScreen(),
+      title: 'crypto',
+      home: OptionScreen(),
 
     );
   }

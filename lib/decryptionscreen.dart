@@ -1,26 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart'; // Import Clipboard class
-
 class DecryptionScreen extends StatefulWidget {
   const DecryptionScreen({Key? key}) : super(key: key);
-
   @override
-  _DecryptionScreenState createState() => _DecryptionScreenState();
-}
-
+  _DecryptionScreenState createState() => _DecryptionScreenState();}
 class _DecryptionScreenState extends State<DecryptionScreen> {
   TextEditingController _plainTextController = TextEditingController();
   TextEditingController _keyController = TextEditingController();
   String _cipherText = '';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.red,
         title: Text("Caesar Cipher"),
-        centerTitle: true,
-      ),
+        centerTitle: true,),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(8.0),
         child: Padding(
@@ -31,68 +25,40 @@ class _DecryptionScreenState extends State<DecryptionScreen> {
                 controller: _plainTextController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  hintText: 'Enter a plain text',
-                ),
-              ),
+                  hintText: 'Enter a plain text',),),
               SizedBox(height: 10),
               TextField(
                 controller: _keyController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  hintText: 'Enter a key (number)',
-                ),
-                keyboardType: TextInputType.number,
-              ),
+                  hintText: 'Enter a key (number)',),
+                keyboardType: TextInputType.number,),
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   String plainText = _plainTextController.text;
-                  int key = int.tryParse(_keyController.text) ??
-                      0; // If parsing fails, default to 0
+                  int key = int.tryParse(_keyController.text) ?? 0; // If parsing fails, default to 0
                   setState(() {
-                    _cipherText = _decrypt(plainText, key);
-                  });
-                },
-                child: Text('Decrypt'),
-              ),
+                    _cipherText = _decrypt(plainText, key);});},
+                child: Text('Decrypt'),),
               SizedBox(height: 20),
               if (_cipherText.isNotEmpty)
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text(
-                      'Cipher Text:',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
+                    Text('Cipher Text:',
+                      style: TextStyle(fontWeight: FontWeight.bold),),
                     SizedBox(height: 5),
-                    Row(
-                      children: [
+                    Row(children: [
                         Expanded(
-                          child: SelectableText(
-                            _cipherText,
-                            style: TextStyle(fontSize: 16),
-                          ),
-                        ),
+                          child: SelectableText(_cipherText,
+                            style: TextStyle(fontSize: 16),),),
                         IconButton(
                           onPressed: () {
                             Clipboard.setData(ClipboardData(text: _cipherText));
                             ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text('Copied to clipboard')),
-                            );
-                          },
-                          icon: Icon(Icons.content_copy),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
+                              SnackBar(content: Text('Copied to clipboard')),);},
+                          icon: Icon(Icons.content_copy),),],),],),],),),),);}
   String _decrypt(String cipherText, int key) {
     String plainText = '';
     for (int i = 0; i < cipherText.length; i++) {
@@ -105,6 +71,4 @@ class _DecryptionScreenState extends State<DecryptionScreen> {
       plainText += String.fromCharCode(charCode);
     }
     return plainText;
-  }
-
-}
+  }}

@@ -1,48 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart'; // Import Clipboard class
-
 class EncryptionScreen extends StatefulWidget {
   const EncryptionScreen({Key? key}) : super(key: key);
-
   @override
   _EncryptionScreenState createState() => _EncryptionScreenState();
 }
-
 class _EncryptionScreenState extends State<EncryptionScreen> {
   TextEditingController _plainTextController = TextEditingController();
   TextEditingController _keyController = TextEditingController();
   String _cipherText = '';
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.green,
+    return Scaffold(appBar: AppBar(backgroundColor: Colors.green,
         title: Text("Caesar Cipher"),
-        centerTitle: true,
-      ),
+        centerTitle: true,),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(8.0),
         child: Padding(
           padding: const EdgeInsets.fromLTRB(8.0, 20.0, 8.0, 8.0), // Added spacing between AppBar and first TextField
           child: Column(
-            children: [
-              TextField(
+            children: [TextField(
                 controller: _plainTextController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  hintText: 'Enter a plain text',
-                ),
-              ),
+                  hintText: 'Enter a plain text',),),
               SizedBox(height: 10),
-              TextField(
-                controller: _keyController,
+              TextField(controller: _keyController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  hintText: 'Enter a key (number)',
-                ),
-                keyboardType: TextInputType.number,
-              ),
+                  hintText: 'Enter a key (number)',),
+                keyboardType: TextInputType.number,),
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
@@ -50,48 +37,27 @@ class _EncryptionScreenState extends State<EncryptionScreen> {
                   int key = int.tryParse(_keyController.text) ?? 0; // If parsing fails, default to 0
                   setState(() {
                     _cipherText = _encrypt(plainText, key);
-                  });
-                },
-                child: Text('Encrypt'),
-              ),
+                  });},
+                child: Text('Encrypt'),),
               SizedBox(height: 20),
               if (_cipherText.isNotEmpty)
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text(
-                      'Cipher Text:',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
+                    Text('Cipher Text:',
+                      style: TextStyle(fontWeight: FontWeight.bold),),
                     SizedBox(height: 5),
-                    Row(
-                      children: [
+                    Row(children: [
                         Expanded(
-                          child: SelectableText(
-                            _cipherText,
-                            style: TextStyle(fontSize: 16),
-                          ),
-                        ),
+                          child: SelectableText(_cipherText,
+                            style: TextStyle(fontSize: 16),),),
                         IconButton(
                           onPressed: () {
                             Clipboard.setData(ClipboardData(text: _cipherText));
                             ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text('Copied to clipboard')),
-                            );
-                          },
-                          icon: Icon(Icons.content_copy),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-            ],
-          ),
-        ),
-      ),
-    );
+                              SnackBar(content: Text('Copied to clipboard')),);},
+                          icon: Icon(Icons.content_copy),),],),],),],),),),);
   }
-
   String _encrypt(String plainText, int key) {
     String cipherText = '';
     for (int i = 0; i < plainText.length; i++) {
