@@ -25,7 +25,7 @@ class _DecryptionScreenState extends State<DecryptionScreen> {
                 controller: _plainTextController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  hintText: 'Enter a plain text',),),
+                  hintText: 'Enter a cipher text',),),
               SizedBox(height: 10),
               TextField(
                 controller: _keyController,
